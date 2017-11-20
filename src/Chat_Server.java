@@ -27,7 +27,7 @@ public class Chat_Server {
         DataOutputStream s0dos = new DataOutputStream(s0out);
 
         //Client 1
-        ServerSocket ss = new ServerSocket(55535);      //May not need another server socket to accept multiple connections
+        ServerSocket ss = new ServerSocket(55536);      //May not need another server socket to accept multiple connections
         Socket s1 = ss.accept(); //Wait for connection, possibly call a function to create a new socket for each client?
 
         InputStream s1in = s1.getInputStream();
