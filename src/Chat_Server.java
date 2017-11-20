@@ -44,11 +44,8 @@ public class Chat_Server {
                 break;
             }
 
-            else if(!str1.equals("")){
+            else {
                 s0dos.writeUTF(str1);
-            }
-
-            else if(!str0.equals("")){
                 s1dos.writeUTF(str0);
             }
         }
