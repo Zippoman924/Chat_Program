@@ -1,6 +1,13 @@
 import java.net.*;
 import java.io.*;
 
+/**
+ * This is a basic chat server that allows up to five clients to connect to eachother.
+ * The server will facilitate the transfer of messages between each client.
+ *
+ * @author hurleyb5<hurleyb5@wit.edu>
+ *
+ */
 public class Chat_Server {
     public static void main(String[]args) throws IOException{
 

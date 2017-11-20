@@ -1,6 +1,12 @@
 import java.net.*;
 import java.io.*;
 
+/**
+ * This is a basic chat client that will connect to a server in order to send messages to other client that are connected to the same server.
+ *
+ * @author hurleyb5<hurleyb5@wit.edu>
+ *
+ */
 public class Chat_Client {
     public static void main(String[]args) throws IOException{
 
