@@ -25,13 +25,13 @@ public class Chat_Client_2 {
         DataOutputStream s0dos = new DataOutputStream(s0out);
 
         System.out.println("Please enter a username: ");
-        String usr = key.next();
+        String usr = key.nextLine();
 
         while (true){
 
             System.out.println("Enter exit to close connection.");
             System.out.println("Please enter a message: ");
-            StringBuilder str = new StringBuilder(usr + ":" + key.next());
+            StringBuilder str = new StringBuilder(usr + ":" + key.nextLine());
 
             if(str.toString().equals(usr + ":exit")){
                 s0dos.writeUTF("exit");
