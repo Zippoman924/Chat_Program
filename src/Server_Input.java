@@ -14,6 +14,8 @@ public class Server_Input implements Runnable {
             while (true) {
                 String str = dis.readUTF();
 
+                System.out.println(str);
+
                 //do stuff with string(print to screen)
 
             }
