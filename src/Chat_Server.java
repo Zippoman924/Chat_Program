@@ -11,30 +11,15 @@ import java.io.*;
 public class Chat_Server {
     public static void main(String[]args) throws IOException{
 
-        /*For now the server can only manualy accept connections from two clients at a time.
-        From there the server will send the messages between each client, research will need to be done into
-        threads in order to properly facilitate the creation of each socket and handle each of them differently.
-        This will allow for the ability to simultaneously send and receive messages from other clients.
-         */
-
-        //Client 0
         ServerSocket s = new ServerSocket(55535);
-        Socket s0 = s.accept(); //Wait for connection, possibly call a function to create a new socket for each client(create thread)?
 
-        InputStream s0in = s0.getInputStream();
-        DataInputStream s0dis = new DataInputStream(s0in);
-        OutputStream s0out = s0.getOutputStream();
-        DataOutputStream s0dos = new DataOutputStream(s0out);
+        while(true) {
+            Socket s0 = s.accept(); //Wait for connection, possibly call a function to create a new socket for each client(create thread)?
+            client_hand(s0);
+        }
 
-        //Client 1
-        ServerSocket ss = new ServerSocket(55536);      //May not need another server socket to accept multiple connections
-        Socket s1 = ss.accept(); //Wait for connection, possibly call a function to create a new socket for each client?
 
-        InputStream s1in = s1.getInputStream();
-        DataInputStream s1dis = new DataInputStream(s1in);
-        OutputStream s1out = s1.getOutputStream();
-        DataOutputStream s1dos = new DataOutputStream(s1out);
-
+        /*
         while(true){
             //forward messages
             String str0 = s0dis.readUTF();
@@ -48,20 +33,16 @@ public class Chat_Server {
                 s0dos.writeUTF(str1);
                 s1dos.writeUTF(str0);
             }
-        }
-
-        s0in.close();   //May add these all to some sort of method in each thread to close all
-        s0dis.close();
-        s0dos.close();
-        s0out.close();
-        s0.close();
-        s.close();
-        s1in.close();
-        s1dis.close();
-        s1dos.close();
-        s1out.close();
-        s1.close();
-        ss.close();
-
+        } */
     }
+
+    /**
+     * This method handles each new connecting client by creating a new thread to handle all of their needs.
+     *
+     * @param s <i>(Socket)</i> New connecting client
+     */
+    public static void client_hand(Socket s){
+        (new Thread(new Server_Thread(s))).start();
+    }
+
 }
