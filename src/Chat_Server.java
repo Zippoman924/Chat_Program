@@ -19,7 +19,7 @@ public class Chat_Server {
 
         //Client 0
         ServerSocket s = new ServerSocket(55535);
-        Socket s0 = s.accept(); //Wait for connection, possibly call a function to create a new socket for each client?
+        Socket s0 = s.accept(); //Wait for connection, possibly call a function to create a new socket for each client(create thread)?
 
         InputStream s0in = s0.getInputStream();
         DataInputStream s0dis = new DataInputStream(s0in);
