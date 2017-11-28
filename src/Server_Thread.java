@@ -10,7 +10,7 @@ public class Server_Thread implements Runnable {
     }
 
     @Override
-    public void run() {
+    public void run() {     //Must adjust in order to make this functional and completely handle each client
         try {
 
             String str = null;  //Used to prevent errors while creating a new output thread
