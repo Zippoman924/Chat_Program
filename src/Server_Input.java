@@ -1,5 +1,4 @@
 import java.io.*;
-import java.net.*;
 
 public class Server_Input implements Runnable {
 
@@ -15,7 +14,7 @@ public class Server_Input implements Runnable {
             while (true) {
                 String str = dis.readUTF();
 
-                //do stuff with string
+                //do stuff with string(print to screen)
 
             }
         }

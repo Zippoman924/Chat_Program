@@ -13,10 +13,15 @@ public class Server_Thread implements Runnable {
     public void run() {
         try {
 
+            String str = null;  //Used to prevent errors while creating a new output thread
+
             InputStream sin = soc.getInputStream();
             DataInputStream sdis = new DataInputStream(sin);
             OutputStream sout = soc.getOutputStream();
             DataOutputStream sdos = new DataOutputStream(sout);
+
+            (new Thread(new Server_Input(sdis))).start();
+            (new Thread(new Server_Output(sdos, str))).start();     //may adjust later
 
         }
         catch(IOException e){
