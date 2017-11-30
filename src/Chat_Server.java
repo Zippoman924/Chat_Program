@@ -1,5 +1,6 @@
 import java.net.*;
 import java.io.*;
+import java.util.ArrayList;
 
 /**
  * This is a basic chat server that allows up to five clients to connect to eachother.
@@ -13,9 +14,11 @@ public class Chat_Server {
 
         ServerSocket s = new ServerSocket(55535);
 
+        ArrayList<Thread> li = new ArrayList();
+
         while(true) {
             Socket s0 = s.accept(); //Wait for connection, possibly call a function to create a new socket for each client(create thread)?
-            client_hand(s0);
+            client_hand(s0, li);
         }
 
 
@@ -41,8 +44,8 @@ public class Chat_Server {
      *
      * @param s <i>(Socket)</i> New connecting client
      */
-    public static void client_hand(Socket s){
-        (new Thread(new Server_Thread(s))).start();
+    public static void client_hand(Socket s, ArrayList li){
+        li.add(new Thread(new Server_Thread(s)));//must find a way to start the threads
     }
 
 }

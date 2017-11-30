@@ -21,7 +21,11 @@ public class Server_Thread implements Runnable {
             DataOutputStream sdos = new DataOutputStream(sout);
 
             (new Thread(new Server_Input(sdis))).start();
-            (new Thread(new Server_Output(sdos, str))).start();     //may adjust later
+            //(new Thread(new Server_Output(sdos, str))).start();     //may not be needed
+
+            while(true){
+                //send messages?
+            }
 
         }
         catch(IOException e){
