@@ -4,6 +4,8 @@ import java.io.*;
 public class Server_Thread implements Runnable {
 
     Socket soc = null;
+    String str = null;  //Used to prevent errors while creating a new output thread
+    String in = null;
 
     public Server_Thread(Socket s){
         this.soc = s;
@@ -13,18 +15,19 @@ public class Server_Thread implements Runnable {
     public void run() {     //Must adjust in order to make this functional and completely handle each client
         try {
 
-            String str = null;  //Used to prevent errors while creating a new output thread
-
             InputStream sin = soc.getInputStream();
             DataInputStream sdis = new DataInputStream(sin);
             OutputStream sout = soc.getOutputStream();
             DataOutputStream sdos = new DataOutputStream(sout);
 
-            (new Thread(new Server_Input(sdis))).start();
-            //(new Thread(new Server_Output(sdos, str))).start();     //may not be needed
-
             while(true){
-                //send messages?
+                if(!in.equals(null)){
+                    send_msg(in);
+                    in = null;
+                }
+                if(!rec_msg().isEmpty() || !rec_msg().equals(str)){
+                    rec_msg();
+                }
             }
 
         }
@@ -32,4 +35,17 @@ public class Server_Thread implements Runnable {
             System.out.println(e.getMessage());
         }
     }
+
+    public void send_msg(String s){ //Needs testing, should be able to send messages between threads
+        synchronized (str){
+            this.str = s;
+        }
+    }
+
+    public String rec_msg(){    //Needs testing, should be able to recieve messages from other threads
+        synchronized (str){
+            return this.str;
+        }
+    }
+
 }
