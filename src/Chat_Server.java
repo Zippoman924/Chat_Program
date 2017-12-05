@@ -20,7 +20,7 @@ public class Chat_Server {
             Socket s0 = s.accept();
 
             t.add(new Thread(new Server_Thread(s0)));       //Add thread to arraylist
-            t.get(t.size()).start();                        //Start newly added thread
+            t.get(t.size()-1).start();                        //Start newly added thread
 
             for(int i=0;i<t.size();i++){                    //Loop through arraylist to look for and send new messages
                 //type
