@@ -8,7 +8,7 @@ public class Server_Thread implements Runnable {
     String in = null;
 
     public Server_Thread(Socket s){
-        this.soc = s;
+        soc = s;
     }
 
     @Override
@@ -22,7 +22,7 @@ public class Server_Thread implements Runnable {
 
             while(true){
 
-                in = sdis.readUTF();        //Messages from the server(need messages from other threads)
+                in = sdis.readUTF();        //Messages from the client
 
                 if(in!=null && in!=""){     //may need to adjust this
                     send_msg(in);
@@ -42,16 +42,16 @@ public class Server_Thread implements Runnable {
         //}
     }
 
-    public void send_msg(String s){ //Needs testing, should be able to send messages between threads
-        synchronized (str){
+    public void send_msg(String s){ //Needs to be remade, must somehow access or send messaged to arraylist of threads in Chat_Server.java
+        //synchronized (str){
             this.str = s;
-        }
+        //}
     }
 
-    public String rec_msg(){    //Needs testing, should be able to recieve messages from other threads
-        synchronized (str){
+    public String rec_msg(){    //May need to be rewritten as well
+        //synchronized (str){
             return this.str;
-        }
+        //}
     }
 
 }
