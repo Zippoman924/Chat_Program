@@ -22,13 +22,13 @@ public class Server_Thread implements Runnable {
 
             while(true){
 
-                in = sdis.readUTF();
+                in = sdis.readUTF();        //Messages from the server(need messages from other threads)
 
                 if(in!=null && in!=""){     //may need to adjust this
                     send_msg(in);
                     in = null;
                 }
-                if(rec_msg()==null || rec_msg().equals(str)){
+                if(rec_msg()==null || rec_msg().equals(str)){       //This may not be needed
                     sdos.writeUTF(rec_msg());
                 }
             }
