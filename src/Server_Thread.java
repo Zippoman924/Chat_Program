@@ -28,7 +28,7 @@ public class Server_Thread implements Runnable {
                     send_msg(in);
                     in = null;
                 }
-                if(rec_msg()==null || rec_msg().equals(str)){       //This may not be needed
+                if(rec_msg()!=null){       //This may not be needed    || rec_msg().equals(str)
                     sdos.writeUTF(rec_msg());
                 }
             }
@@ -42,16 +42,16 @@ public class Server_Thread implements Runnable {
         //}
     }
 
-    public void send_msg(String s){ //Needs to be remade, must somehow access or send messaged to arraylist of threads in Chat_Server.java
-        //synchronized (str){
-            this.str = s;
-        //}
+    public void send_msg(String s){ //May need to be remade, must somehow access or send messaged to arraylist of threads in Chat_Server.java
+        synchronized (str){
+            str = s;
+        }
     }
 
     public String rec_msg(){    //May need to be rewritten as well
-        //synchronized (str){
-            return this.str;
-        //}
+        synchronized (str){
+            return str;
+        }
     }
 
 }

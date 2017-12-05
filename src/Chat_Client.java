@@ -43,7 +43,6 @@ public class Chat_Client {
                 System.out.println(s0dis.readUTF());
             }
         }
-
         s0dos.close();
         s0out.close();
         s0dis.close();
