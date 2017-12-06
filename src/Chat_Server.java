@@ -10,11 +10,12 @@ import java.util.ArrayList;
  *
  */
 public class Chat_Server {
+
+    static ArrayList<Server_Thread> t = new ArrayList<>();
+
     public static void main(String[]args) throws IOException{       //Must create 5 named thread variables and store them in an array to use them.
 
         ServerSocket s = new ServerSocket(55535);
-
-        ArrayList<Thread> t = new ArrayList<>();
 
         /*
         Possible idea, may pass pointer to arraylist t to each thread on creation(if unable to pass pointer then I may just send a copy of the arraylist
@@ -30,8 +31,8 @@ public class Chat_Server {
         while(true) {
             Socket s0 = s.accept();
 
-            t.add(new Thread(new Server_Thread(s0)));       //Add thread to arraylist
-            t.get(t.size()-1).start();                        //Start newly added thread
+            t.add(new Server_Thread(s0));       //Add thread to arraylist
+            t.get(t.size()-1).run();                        //Start newly added thread
 
             for(int i=0;i<t.size();i++){                    //Loop through arraylist to look for and send new messages
                 //type

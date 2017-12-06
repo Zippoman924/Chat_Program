@@ -4,7 +4,7 @@ import java.io.*;
 public class Server_Thread implements Runnable {
 
     Socket soc = null;
-    String str = "";  //Used to prevent errors while creating a new output thread
+    String str = null;  //Used to prevent errors while creating a new output thread
     String in = null;
 
     public Server_Thread(Socket s){
@@ -28,8 +28,8 @@ public class Server_Thread implements Runnable {
                     send_msg(in);
                     in = null;
                 }
-                if(rec_msg()!=null){       //This may not be needed    || rec_msg().equals(str)
-                    sdos.writeUTF(rec_msg());
+                if(str!=null){       //This may not be needed    || rec_msg().equals(str)
+                    sdos.writeUTF(str);
                 }
             }
 
@@ -43,15 +43,13 @@ public class Server_Thread implements Runnable {
     }
 
     public void send_msg(String s){ //May need to be remade, must somehow access or send messaged to arraylist of threads in Chat_Server.java
-        synchronized (str){
-            str = s;
+        for(Server_Thread x : Chat_Server.t){
+            x.rec_msg(s);
         }
     }
 
-    public String rec_msg(){    //May need to be rewritten as well
-        synchronized (str){
-            return str;
-        }
+    public void rec_msg(String s){    //May need to be rewritten as well
+        str = s;
     }
 
 }
