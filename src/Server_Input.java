@@ -12,12 +12,7 @@ public class Server_Input implements Runnable {
     public void run() {
         try {
             while (true) {
-                String str = dis.readUTF();
-
-                System.out.println(str);
-
-                //do stuff with string(print to screen)
-
+                System.out.println(dis.readUTF());
             }
         }
         catch (IOException e){

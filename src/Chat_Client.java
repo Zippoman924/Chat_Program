@@ -27,6 +27,9 @@ public class Chat_Client {
         System.out.println("Please enter a username: ");
         String usr = key.nextLine();
 
+        Thread in = new Thread(new Server_Input(s0dis));
+        in.start();
+
         while (true){
 
             System.out.println("Enter exit to close connection.");
@@ -39,8 +42,6 @@ public class Chat_Client {
             }
             else{
                 s0dos.writeUTF(str.toString());
-
-                System.out.println(s0dis.readUTF());
             }
         }
         s0dos.close();
