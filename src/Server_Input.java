@@ -4,7 +4,7 @@ public class Server_Input extends Thread{
 
     DataInputStream dis = null;
 
-    public Server_Input(DataInputStream d){       //May not be needed
+    public Server_Input(DataInputStream d){
         dis = d;
     }
 
@@ -20,7 +20,7 @@ public class Server_Input extends Thread{
         }
     }
 
-    public void send_msg(String s){ //May need to be remade, must somehow access or send messaged to arraylist of threads in Chat_Server.java
+    public void send_msg(String s){
         for(Server_Thread x : Chat_Server.t){
             x.rec_msg(s);
         }

@@ -31,14 +31,8 @@ public class Chat_Server {
         while(true) {
             Socket s0 = s.accept();
 
-            t.add(new Server_Thread(s0));       //Add thread to arraylist
-            System.out.println("Added new server thread");
-            t.get(t.size() - 1).start();                        //Needs to use the start() method for threads
-            System.out.println("Running new server thread");
-
-            for(int i=0;i<t.size();i++){                    //Loop through arraylist to look for and send new messages
-                System.out.println(i);
-            }
+            t.add(new Server_Thread(s0));
+            t.get(t.size() - 1).start();
         }
     }
 }
