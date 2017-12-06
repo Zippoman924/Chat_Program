@@ -1,7 +1,7 @@
 import java.net.*;
 import java.io.*;
 
-public class Server_Thread implements Runnable {
+public class Server_Thread extends Thread {
 
     Socket soc = null;
     String str = null;  //Used to prevent errors while creating a new output thread
