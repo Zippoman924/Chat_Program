@@ -24,14 +24,12 @@ public class Chat_Client {
         OutputStream s0out = s0.getOutputStream();
         DataOutputStream s0dos = new DataOutputStream(s0out);
 
-        Thread in = new Thread(new Server_Input(s0dis));
-        in.start();
 
         System.out.println("Please enter a username: ");
         String usr = key.nextLine();
 
-        //Thread in = new Thread(new Server_Input(s0dis));
-        //in.start();
+        Client_Input in = new Client_Input(s0dis);
+        in.start();
 
         while (true){
 
@@ -40,7 +38,6 @@ public class Chat_Client {
             StringBuilder str = new StringBuilder(usr + ":" + key.nextLine());
 
             if(str.toString().equals(usr + ":exit")){
-                s0dos.writeUTF("exit");
                 break;
             }
             else{

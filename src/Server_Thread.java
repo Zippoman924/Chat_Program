@@ -4,15 +4,14 @@ import java.io.*;
 public class Server_Thread extends Thread {
 
     Socket soc = null;
-    String str = null;  //Used to prevent errors while creating a new output thread
-    String in = null;
+    String str = null;
 
     public Server_Thread(Socket s){
         soc = s;
     }
 
     @Override
-    public void run() {     //Must adjust in order to make this functional and completely handle each client
+    public void run() {
         try {
 
             InputStream sin = soc.getInputStream();
@@ -20,31 +19,19 @@ public class Server_Thread extends Thread {
             OutputStream sout = soc.getOutputStream();
             DataOutputStream sdos = new DataOutputStream(sout);
 
+            Server_Input in = new Server_Input(sdis);
+            in.start();
+
             while(true){
-
-                in = sdis.readUTF();        //Messages from the client
-
-                if(in!=null && in!=""){     //may need to adjust this
-                    send_msg(in);
-                    in = null;
-                }
-                if(str!=null){       //This may not be needed    || rec_msg().equals(str)
+                if(str!=null) {
                     sdos.writeUTF(str);
+                    str = null;
                 }
             }
 
         }
         catch(IOException e){
             System.out.println(e.getMessage());
-        }
-        //catch(NullPointerException e){
-            //do something
-        //}
-    }
-
-    public void send_msg(String s){ //May need to be remade, must somehow access or send messaged to arraylist of threads in Chat_Server.java
-        for(Server_Thread x : Chat_Server.t){
-            x.rec_msg(s);
         }
     }
 
