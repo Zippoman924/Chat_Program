@@ -1,6 +1,14 @@
 import java.net.*;
 import java.io.*;
 
+/**
+ * This program is the new thread that gets created for each client connected.
+ * It creates all of the input and output streams, it creates a separate thread
+ * for the server input.
+ *
+ * @author hurleyb5
+ *
+ */
 public class Server_Thread extends Thread {
 
     Socket soc = null;
@@ -28,6 +36,12 @@ public class Server_Thread extends Thread {
         }
     }
 
+    /**
+     * This method is called by the Server_Input thread in order to send the newly received message
+     * to each of the connected clients.
+     *
+     * @param s <i>(String)</i> Message outgoing from the server
+     */
     public void rec_msg(String s){
         str = s;
         try {

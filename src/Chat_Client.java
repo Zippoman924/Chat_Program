@@ -3,7 +3,9 @@ import java.io.*;
 import java.util.Scanner;
 
 /**
- * This is a basic chat client that will connect to a server in order to send messages to other client that are connected to the same server.
+ * This is a basic chat client that will connect to a server in order to send messages
+ * to other client that are connected to the same server. It also creates a new Client_Input
+ * thread in order to check for newly received messages.
  *
  * @author hurleyb5
  *
