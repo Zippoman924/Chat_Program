@@ -10,7 +10,7 @@ import java.util.Scanner;
  * @author hurleyb5
  *
  */
-public class Chat_Client {
+public class Chat_Client {                                                              //Adding comment to help with github update
     public static void main(String[]args) throws IOException{
 
         /*Threads will eventually be added in order to allow for the ability to simultaneously send and receive messages
